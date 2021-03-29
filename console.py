@@ -115,6 +115,7 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def treat_string(word: str):
+        """ delete any '," in the word and replace _ by ' ' """
         word = word.strip(' \'\"')
         word = ' '.join(word.split('_'))
         return word

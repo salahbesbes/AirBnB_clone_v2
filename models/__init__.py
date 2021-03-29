@@ -14,5 +14,4 @@ try:
         storage.reload()
         Base = {}
 except Exception:
-    # todo: delete line below
-    raise Exception
+    pass

@@ -25,14 +25,17 @@ class DBStorage:
     __session = None
 
     def __init__(self):
+        """ init class """
         self.engine = self.__var_env
 
     @property
     def engine(self):
+        """ getter for engine """
         return self.__engine
 
     @engine.setter
     def engine(self, en_var):
+        """ setter for engine """
         user = en_var['HBNB_MYSQL_USER']
         password = en_var['HBNB_MYSQL_PWD']
         dataBase = en_var['HBNB_MYSQL_DB']
@@ -45,6 +48,10 @@ class DBStorage:
                                       pool_pre_ping=True)
 
     def all(self, cls=None):
+        """ print all instance in db corresponding the cls
+            if no args print all instance in the db
+         """
+
         result = {}
         if cls in self.__classes:
             rows = self.__session.query(cls).all()
@@ -63,12 +70,15 @@ class DBStorage:
         return result
 
     def new(self, obj):
+        """ save new instance to db """
         self.__session.add(obj)
 
     def save(self):
+        """ persist modifications """
         self.__session.commit()
 
     def delete(self, obj=None):
+        """ delete from db """
         try:  # try to find obj using eval className
             className = eval(obj.__class__.__name__)
             res = self.__session \
@@ -85,6 +95,7 @@ class DBStorage:
             raise Exception
 
     def reload(self):
+        """ creating session from the engine """
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(
             bind=self.__engine,
