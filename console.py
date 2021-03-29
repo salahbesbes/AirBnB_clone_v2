@@ -113,6 +113,12 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
+    @staticmethod
+    def treat_string(word: str):
+        word = word.strip(' \'\"')
+        word = ' '.join(word.split('_'))
+        return word
+
     def do_create(self, command: str):
         """ Create an object of any class"""
         try:
