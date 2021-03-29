@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 CREATE DATABASE IF NOT EXISTS  hbnb_dev_db;
 USE hbnb_dev_db;
 CREATE USER IF NOT EXISTS hbnb_dev@localhost IDENTIFIED BY 'hbnb_dev_pwd';
