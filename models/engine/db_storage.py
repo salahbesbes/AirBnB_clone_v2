@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ DB modules """
 import os
 from models.base_model import BaseModel, Base
