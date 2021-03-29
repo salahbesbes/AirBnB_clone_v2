@@ -43,7 +43,7 @@ class FileStorage:
             obj_ref = class_name + '.' + obj.id
             del (self.__objects[obj_ref])  # try to delete obj from dict
             self.save()  # write into the .json file
-        except KeyError:
+        except Exception:
             pass
 
     def reload(self):
