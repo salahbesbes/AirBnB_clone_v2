@@ -24,8 +24,6 @@ class FileStorage:
         else:
             return FileStorage.__objects
 
-            # raise Exception
-
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
@@ -40,6 +38,7 @@ class FileStorage:
             json.dump(temp, f, indent=2)
 
     def delete(self, obj=None):
+        """ delete instance from __object """
         try:
             class_name = obj.__class__.__name__
             obj_ref = class_name + '.' + obj.id
