@@ -33,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
     def preloop(self):
         """Prints if isatty is false"""
         if not sys.__stdin__.isatty():
-            print('(hbnb)')
+            print('(hbnb)', end='')
 
     def precmd(self, line):
         """Reformat command line for advanced command syntax.
@@ -134,24 +134,20 @@ class HBNBCommand(cmd.Cmd):
         # create Place latitude=20.6 max_guest=6 name=state1
         try:
             args = command.split()[1:]
-            print(args)
             new_obj = new_instance.__dict__
             # list of instance attr
             obj_arg = new_instance.__class__.__dict__
-            print(obj_arg.keys())
             for arg in args:
                 key = arg.split('=')[0]
+                # print('obj_arg',obj_arg)
                 if key not in obj_arg:  # if key is not in inst attr
                     continue  # ignore it
                 val = arg.split('=')[1]
                 val = self.treat_string(val)
                 if key in HBNBCommand.types:
                     try:
-                        print("before", val, type(val))
                         val = HBNBCommand.types[key](val)  # if we cant cast it
-                        print("after", val, type(val))
                     except Exception:
-                        print("excep", val, type(val))
                         continue  # escape it
                 # if the val in instance attr && val can be casted we add them
                 new_obj[key] = val
@@ -338,7 +334,7 @@ class HBNBCommand(cmd.Cmd):
         # iterate through attr names and values
         for i, att_name in enumerate(args):
             # block only runs on even iterations
-            if (i % 2 == 0):
+            if i % 2 == 0:
                 att_val = args[i + 1]  # following item is value
                 if not att_name:  # check for att_name
                     print("** attribute name missing **")

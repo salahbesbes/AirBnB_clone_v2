@@ -12,6 +12,7 @@ try:
     else:
         storage = FileStorage()
         storage.reload()
+        Base = {}
 except Exception:
     # todo: delete line below
     raise Exception

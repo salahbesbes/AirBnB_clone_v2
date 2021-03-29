@@ -18,10 +18,10 @@ class BaseModel:
         """Instantiates a new model"""
 
         if kwargs:
-            # kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-            #                                          '%Y-%m-%dT%H:%M:%S.%f')
-            # kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-            #                                          '%Y-%m-%dT%H:%M:%S.%f')
+            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
+                                                     '%Y-%m-%dT%H:%M:%S.%f')
+            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
+                                                     '%Y-%m-%dT%H:%M:%S.%f')
             del kwargs['__class__']
             self.__dict__.update(kwargs)
             return
@@ -33,7 +33,7 @@ class BaseModel:
     def __str__(self):
         """Returns a string representation of the instance"""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
-        return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
+        return '[{}] ({}) {}'.format(cls, self.id, self.to_dict())
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
@@ -44,6 +44,10 @@ class BaseModel:
 
     def to_dict(self):
         """Convert instance into dict format"""
+        try:
+            del self.__dict__['_sa_instance_state']
+        except Exception:
+            pass
         dictionary = {}
         dictionary.update(self.__dict__)
         dictionary.update({'__class__':
@@ -51,8 +55,6 @@ class BaseModel:
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
 
-        if dictionary['_sa_instance_state']:
-            del dictionary['_sa_instance_state']
         return dictionary
 
     def delete(self):
