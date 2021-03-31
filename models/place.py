@@ -5,12 +5,12 @@ from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
 import models
 
-place_amenity = Table('hbnb_dev_db', Base.metadata,
-                      Column('places',
+place_amenity = Table('place_amenity', Base.metadata,
+                      Column('place_id',
                              String(60),
                              ForeignKey('places.id'),
                              nullable=False),
-                      Column('amenities',
+                      Column('amenity_id',
                              String(60),
                              ForeignKey('amenities.id'),
                              nullable=False))

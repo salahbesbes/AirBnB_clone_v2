@@ -93,8 +93,7 @@ class DBStorage:
                 self.__session.delete(res)
                 self.__session.commit()
         except Exception:
-            # todo: delete line below
-            raise Exception
+            pass
 
     def reload(self):
         """ creating session from the engine """
