@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ DB modules """
 from models.base_model import BaseModel, Base
+from models.amenity import Amenity
 from models.state import State
 from models.city import City
 from models.place import Place
 from models.user import User
-from models.amenity import Amenity
 from models.review import Review
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import create_engine
