@@ -5,20 +5,14 @@ sudo apt-get update -y
 sudo apt-get install nginx -y
 sudo chown -R "ubuntu":"ubuntu" /etc/nginx/
 sudo chown -R "ubuntu":"ubuntu" /var/www/
+nginx -s start
 
 sudo mkdir -p /data/web_static/
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
-sudo chown -Rh "ubuntu":"ubuntu" /data/
+sudo chown -R "ubuntu":"ubuntu" /data/
 
-echo \
-"<html>
-  <head>
-  </head>
-  <body>
-    Holberton School
-  </body>
-</html>" > /data/web_static/releases/test/index.html
+echo "this is salah besbes" > /data/web_static/releases/test/index.html
 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 # newroot='root \/data\/web_static\/current;'
@@ -30,4 +24,4 @@ newlocation="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current;\n\
 pattern="root \/var\/www\/html;"
 sed -ie "/$pattern/a\ $newlocation" $path
 
-sudo service nginx restart
+nginx -s reload
