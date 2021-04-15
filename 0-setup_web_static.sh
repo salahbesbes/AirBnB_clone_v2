@@ -3,8 +3,7 @@
 
 sudo apt-get -y update
 sudo apt-get install -y nginx
-sudo chown -R "ubuntu":"ubuntu" /etc/nginx/
-sudo chown -R "ubuntu":"ubuntu" /var/www/
+sudo apt-get -y upgrade
 
 sudo mkdir -p /data/web_static/
 sudo mkdir -p /data/web_static/releases/test/
@@ -16,11 +15,11 @@ echo "this is salah besbes" > /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 # newroot='root \/data\/web_static\/current;'
 pattern='root \/var\/www\/html;'
-path="/etc/nginx/sites-enabled/default"
+path="/etc/nginx/sites-available/default"
 
 newlocation="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current;\n\t}\n"
 
 pattern="root \/var\/www\/html;"
 sed -ie "/$pattern/a\ $newlocation" $path
 
-sudo service restart
+sudo service nginx restart
