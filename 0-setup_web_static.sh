@@ -18,8 +18,6 @@ pattern='root \/var\/www\/html;'
 path="/etc/nginx/sites-available/default"
 
 newlocation="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current;\n\t}\n"
-
-pattern="root \/var\/www\/html;"
 sed -ie "/$pattern/a\ $newlocation" $path
 
 sudo service nginx restart
