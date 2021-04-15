@@ -5,10 +5,9 @@ sudo apt-get -y update
 sudo apt-get install -y nginx
 sudo apt-get -y upgrade
 
-sudo mkdir -p /data/web_static/
-sudo mkdir -p /data/web_static/releases/test/
-sudo mkdir -p /data/web_static/shared/
-sudo chown -R "ubuntu":"ubuntu" /data/
+mkdir -p /data/web_static/releases/test/
+mkdir -p /data/web_static/shared/ 
+sudo chown -R ubuntu:ubuntu /data/
 
 echo "this is salah besbes" > /data/web_static/releases/test/index.html
 
