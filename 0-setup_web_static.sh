@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # preparing for deploying
 
-sudo apt-get update -y
-sudo apt-get install nginx -y
+sudo apt-get -y update
+sudo apt-get install -y nginx
 sudo chown -R "ubuntu":"ubuntu" /etc/nginx/
 sudo chown -R "ubuntu":"ubuntu" /var/www/
-nginx -s start
 
 sudo mkdir -p /data/web_static/
 sudo mkdir -p /data/web_static/releases/test/
@@ -24,4 +23,4 @@ newlocation="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current;\n\
 pattern="root \/var\/www\/html;"
 sed -ie "/$pattern/a\ $newlocation" $path
 
-nginx -s reload
+sudo service restart
