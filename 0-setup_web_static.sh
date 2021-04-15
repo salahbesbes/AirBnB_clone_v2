@@ -7,7 +7,7 @@ sudo apt-get install nginx -y
 sudo mkdir -p /data/web_static/
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir /data/web_static/shared/
-sudo chown -R "$USER":"$USER" /data/
+sudo chown -R "ubuntu":"ubuntu" /data/
 
 echo "Hello AirBnb" > /data/web_static/releases/test/index.html
 
