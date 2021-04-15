@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # preparing for deploying
 
-sudo apt-get update
-sudo apt-get install nginx
+sudo apt-get update -y
+sudo apt-get install nginx -y
 
 sudo mkdir -p /data/web_static/
-sudo mkdir -p /data/web_static/releases/
-sudo mkdir -p /data/web_static/shared/
 sudo mkdir -p /data/web_static/releases/test/
+sudo mkdir /data/web_static/shared/
 sudo chown -R "$USER":"$USER" /data/
 
 echo "Hello AirBnb" > /data/web_static/releases/test/index.html
@@ -22,4 +21,4 @@ newlocation="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current;\n\
 pattern="root \/var\/www\/html;"
 sed -ie "/$pattern/a\ $newlocation" $path
 
-sudo service nginx restart
+sudo service nginx start
