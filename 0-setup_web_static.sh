@@ -7,11 +7,10 @@ sudo apt-get install -y nginx
 
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/ 
-sudo chown -R ubuntu:ubuntu /data
+echo "Salah besbes page" > /data/web_static/releases/test/index.html
+ln -sf /data/web_static/releases/test /data/web_static/current 
 
-echo "this is salah besbes" > /data/web_static/releases/test/index.html
-
-sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
+chown ubuntu:ubuntu -R /data/
 path="/etc/nginx/sites-available/default"
 
 newlocation="\tlocation /hbnb_static {\n\t\talias /data/web_static/current;\n\t}\n"
