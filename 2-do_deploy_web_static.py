@@ -3,7 +3,6 @@
 from fabric.api import *
 import re
 
-env.user = 'ubuntu'
 env.hosts = ['34.75.197.138', '104.196.173.55']
 
 
@@ -28,15 +27,17 @@ def do_deploy(archive_path):
             run('tar -xzf /tmp/{ar_name} -C {dest} '
                 .format(ar_name=archive_name, dest=archive_destination))
             run('rm -f /tmp/{ar_name} '.format(ar_name=archive_name))
-            run('mv /data/web_static/releases/{archive}/web_static/* \
-                /data/web_static/releases/{archive}/'
+
+            run('mv /data/web_static/releases/{archive}/web_static/* '
+                .format(archive=archive) +
+                ' /data/web_static/releases/{archive}/'
                 .format(archive=archive))
-            run('rm -rf /data/web_static/releases/\
-                {archive}/web_static'.format(archive=archive))
+
+            run('rm -rf /data/web_static/releases/' +
+                '{archive}/web_static'.format(archive=archive))
             run('rm -rf /data/web_static/current ')
-            run('ln -sf /data/web_static/releases/{archive}\
-                /data/web_static/current'
-                .format(archive=archive))
+            run('ln -sf /data/web_static/releases/{archive} '
+                .format(archive=archive) + ' /data/web_static/current')
             return True
 
         except Exception:
