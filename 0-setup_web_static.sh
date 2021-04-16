@@ -13,7 +13,9 @@ ln -sf /data/web_static/releases/test /data/web_static/current
 chown ubuntu:ubuntu -R /data/
 path="/etc/nginx/sites-enabled/default"
 
-newlocation="\tlocation /hbnb_static {\n\t\talias /data/web_static/current;\n\t}\n"
+newlocation="\tlocation /hbnb_static \{\
+\n\t\talias /data/web_static/current;\n\
+\t\}\n"
 
 pattern="root \/var\/www\/html;"
 
