@@ -12,7 +12,7 @@ def do_deploy(archive_path):
     Args:
         archive_path ([string]): [path to the archive]
     """
-    if not archive_path:
+    if not bool(path.exists(archive_path)):
         return False
 
     else:
@@ -30,7 +30,7 @@ def do_deploy(archive_path):
 
             run('mv /data/web_static/releases/{archive}/web_static/* '
                 .format(archive=archive) +
-                ' /data/web_static/releases/{archive}/'
+                '/data/web_static/releases/{archive}/'
                 .format(archive=archive))
 
             run('rm -rf /data/web_static/releases/' +
