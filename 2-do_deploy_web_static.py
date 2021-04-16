@@ -19,15 +19,15 @@ def do_deploy(archive_path):
     archive_name = archive_path.split('/')[1]
     archive = archive_name.split('.')[0]
     release = '/data/web_static/releases'
-    archive_destination = '/data/web_static/releases/{}/'.format(
-        archive)
+    archive_destination = '/data/web_static/releases/{archive}/'.format(
+        archive=archive)
     put(archive_path, '/tmp')
     run('mkdir -p {dest} '.format(dest=archive_destination))
     run('tar -xzf /tmp/{ar_name} -C {dest}'
         .format(ar_name=archive_name, dest=archive_destination))
     run('rm /tmp/{ar_name} '.format(ar_name=archive_name))
 
-    run('mv {release}/web_static/* {release}/{archive}/'
+    run('mv {release}/{archive}/web_static/* {release}/{archive}/'
         .format(release=release, archive=archive))
 
     run('rm -rf {release}/{archive}/web_static'
