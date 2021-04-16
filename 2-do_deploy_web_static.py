@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ fabric module """
+from fabric.api import run, env, put
 from os import path
-from fabric.api import *
 
 env.hosts = ['34.75.197.138', '104.196.173.55']
 
@@ -19,13 +19,13 @@ def do_deploy(archive_path):
     archive_name = archive_path.split('/')[1]
     archive = archive_name.split('.')[0]
     release = '/data/web_static/releases'
-    archive_destination = '/data/web_static/releases/{}'.format(
+    archive_destination = '/data/web_static/releases/{}/'.format(
         archive)
     put(archive_path, '/tmp')
     run('mkdir -p {dest} '.format(dest=archive_destination))
     run('tar -xzf /tmp/{ar_name} -C {dest}'
         .format(ar_name=archive_name, dest=archive_destination))
-    run('rm -f /tmp/{ar_name} '.format(ar_name=archive_name))
+    run('rm /tmp/{ar_name} '.format(ar_name=archive_name))
 
     run('mv {release}/web_static/* {release}/{archive}/'
         .format(release=release, archive=archive))
