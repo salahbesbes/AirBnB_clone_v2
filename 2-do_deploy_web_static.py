@@ -32,7 +32,7 @@ def do_deploy(archive_path):
                 /data/web_static/releases/{archive}/'
                 .format(archive=archive))
             run('rm -rf /data/web_static/releases/\
-                web_static_20170315003959/web_static')
+                {archive}/web_static'.format(archive=archive))
             run('rm -rf /data/web_static/current ')
             run('ln -sf /data/web_static/releases/{archive}\
                 /data/web_static/current'
