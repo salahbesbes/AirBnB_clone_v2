@@ -5,7 +5,7 @@ import time
 
 
 def do_pack():
-    """Make a tar.gz archive of da (/web_static )."""
+    """Make a web_static_[0-9].tgz archive of da (/web_static )."""
     try:
         name_folder = "web_static"
         archive_name = "{}_{}.tgz".format(name_folder, time.strftime(
