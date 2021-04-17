@@ -10,10 +10,7 @@ echo "Hello AirBnb" | sudo tee /data/web_static/releases/test/index.html
 ln -sf /data/web_static/releases/test /data/web_static/current 
 chown ubuntu:ubuntu -hR /data/
 
-path="/etc/nginx/sites-available/default"
-newlocation='\tlocation /hbnb_static/ {\
-\t\talias /data/web_static/current/;\
-\t}\
+path="\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n
 '
 pattern='root \/var\/www\/html;'
 sudo sed "/$pattern/ a \ $newlocation" $path
