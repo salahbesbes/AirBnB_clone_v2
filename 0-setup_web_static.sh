@@ -9,5 +9,12 @@ mkdir /data/web_static/shared/
 echo "Hello AirBnb" | sudo tee /data/web_static/releases/test/index.html
 ln -sf /data/web_static/releases/test /data/web_static/current 
 chown ubuntu:ubuntu -hR /data/
-sudo sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
-sudo service nginx restart 
+
+path="/etc/nginx/sites-available/default"
+newlocation='\tlocation /hbnb_static/ {\
+\t\talias /data/web_static/current/;\
+\t}\
+'
+pattern='root \/var\/www\/html;'
+sudo sed "/$pattern/ a \ $newlocation" $path
+sudo service nginx restart
