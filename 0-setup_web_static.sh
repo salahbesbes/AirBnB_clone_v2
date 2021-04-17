@@ -12,6 +12,6 @@ chown ubuntu:ubuntu -hR /data/
 
 path='/etc/nginx/sites-available/default'
 newlocation='\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n'
-pattern='sever_name'
+pattern='listen \[::\]:80'
 sudo sed -i "/$pattern/ a \ $newlocation" $path
 sudo service nginx restart
