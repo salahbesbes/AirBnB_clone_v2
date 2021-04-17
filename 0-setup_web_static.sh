@@ -11,6 +11,6 @@ ln -sf /data/web_static/releases/test /data/web_static/current
 chown ubuntu:ubuntu -hR /data/
 
 path='\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n'
-pattern='root \/var\/www\/html;'
+pattern='server_name _;'
 sudo sed "/$pattern/ a \ $newlocation" $path
 sudo service nginx restart
