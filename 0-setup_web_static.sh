@@ -12,5 +12,5 @@ chown ubuntu:ubuntu -hR /data/
 
 path='\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n'
 pattern='index index.html index.htm index.nginx-debian.html;'
-sudo sed "/$pattern/ a \ $newlocation" $path
+sudo sed -i "/$pattern/ a \ $newlocation" $path
 sudo service nginx restart
