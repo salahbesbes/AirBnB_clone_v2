@@ -61,11 +61,8 @@ def deploy():
     """     full deploy: creates and distributes an archive to a web servers,
     """
 
-    # result = execute(functionName, x=5, y=10, hosts=['host-1', 'host-2'])
-    # print(result) #    {'host-1': 15, 'host-2': 15}
     arch_path = do_pack()
 
     if not arch_path:
         return False
-    return execute(do_deploy, archive_path=arch_path,
-                   hosts=['34.75.197.138', '104.196.173.55'])
+    return do_deploy(arch_path)
