@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
-# preparing for deploying
-
-sudo apt-get -y update
+# Bash Script to Setup Airbnb Static_web 
+sudo apt-get update -y
+sudo apt-get updgrade -y
 sudo apt-get install -y nginx
-
+mkdir -p  /data/web_static/
 mkdir -p /data/web_static/releases/test/
-mkdir -p /data/web_static/shared/ 
-echo "Salah besbes page" | sudo tee /data/web_static/releases/test/index.html
+mkdir /data/web_static/shared/
+echo "Hello AirBnb" | sudo tee /data/web_static/releases/test/index.html
 ln -sf /data/web_static/releases/test /data/web_static/current 
-
-chown ubuntu:ubuntu -R /data/
-path="/etc/nginx/sites-available/default"
-newlocation='\tlocation /hbnb_static/ {\
-\t\talias /data/web_static/current/;\
-\t}\
-'
-pattern='root \/var\/www\/html;'
-sudo sed "/$pattern/ a \ $newlocation" $path
-sudo service nginx restart
+chown ubuntu:ubuntu -hR /data/
+sudo sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
+sudo service nginx restart 
