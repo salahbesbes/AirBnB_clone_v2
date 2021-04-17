@@ -5,7 +5,7 @@ import re
 import time
 from os import path
 
-
+env.hosts = ['34.75.197.138', '104.196.173.55']
 # env.user = 'ubuntu'
 
 
