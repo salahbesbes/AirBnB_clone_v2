@@ -22,6 +22,8 @@ def do_deploy(archive_path):
     archive_destination = '/data/web_static/releases/{archive}/'.format(
         archive=archive)
     put(archive_path, '/tmp')
+    # run('rm -fr {release}/{archive}/'
+    #     .format(release=release, archive=archive))
     run('mkdir -p {dest} '.format(dest=archive_destination))
     run('tar -xzf /tmp/{ar_name} -C {dest}'
         .format(ar_name=archive_name, dest=archive_destination))
@@ -33,6 +35,6 @@ def do_deploy(archive_path):
     run('rm -rf {release}/{archive}/web_static'
         .format(release=release, archive=archive))
     run('rm -rf /data/web_static/current')
-    run('ln -s {release}/{archive}/data/web_static/current'
+    run('ln -fs {release}/{archive}/ data/web_static/current'
         .format(release=release, archive=archive))
     return True
