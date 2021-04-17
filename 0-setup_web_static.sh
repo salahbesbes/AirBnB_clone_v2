@@ -9,7 +9,7 @@ mkdir /data/web_static/shared/
 echo "Hello AirBnb" | sudo tee /data/web_static/releases/test/index.html
 ln -sf /data/web_static/releases/test /data/web_static/current 
 chown ubuntu:ubuntu -hR /data/
-
+# appen new location in the server (under the patter line)
 path='/etc/nginx/sites-available/default'
 newlocation='\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n'
 pattern='listen \[::\]:80'
