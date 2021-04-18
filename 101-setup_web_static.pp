@@ -11,9 +11,9 @@ package { 'nginx':
 }
 
 exec { 'folder creation':
-  command => 'mkdir -p  /data/web_static/;
-        mkdir -p /data/web_static/releases/test/;
-        mkdir /data/web_static/shared/',
+  command => '/bin/mkdir -p  /data/web_static/;
+        /bin/mkdir -p /data/web_static/releases/test/;
+        /bin/mkdir /data/web_static/shared/',
 }
 file { '/var/www/html/index.html':
   ensure  => present,
@@ -46,7 +46,7 @@ file_line { '/etc/nginx/sites-available/default':
 }
 
 service { 'nginx':
-  ensure  => 'running',
+  ensure  => running,
   enable  => true,
   require => Package['nginx'],
 }
