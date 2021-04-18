@@ -36,6 +36,7 @@ def clean_releases_from_server(nb=0):
 
 
 def do_clean(number=0):
+    """ cleaner function """
     clean_local_releases(number)
     execute(clean_releases_from_server, nb=number,
             hosts=['34.75.197.138', '104.196.173.55'])
