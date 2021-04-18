@@ -31,7 +31,10 @@ def clean_releases_from_server(nb=0):
     mypath = '/data/web_static/releases'
     if path.exists(mypath) is False:
         return False
-    run(' find {}  -mindepth 1 -maxdepth 1 -type d | sort -r |  tail -n +{} | xargs rm -fr'
+    run(' find {}  -mindepth 1 -maxdepth 1 -type d | \
+        sort -r | \
+        tail -n +{} | \
+        xargs rm -fr'
         .format(mypath, nb))
 
 
