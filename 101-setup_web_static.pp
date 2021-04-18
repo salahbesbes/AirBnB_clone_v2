@@ -11,9 +11,9 @@ package { 'nginx':
 }
 
 exec { 'folder creation':
-  command => '/bin/mkdir -p  /data/web_static/;
-        /bin/mkdir -p /data/web_static/releases/test/;
-        /bin/mkdir /data/web_static/shared/',
+  command => 'usr/bin/mkdir -p  /data/web_static/;
+        usr/bin/mkdir -p /data/web_static/releases/test/;
+        usr/bin/mkdir /data/web_static/shared/',
 }
 file { '/var/www/html/index.html':
   ensure  => present,
