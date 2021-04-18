@@ -1,32 +1,13 @@
 #!/usr/bin/python3
 """ fabric module """
-from os import listdir, path
-from os.path import isfile, join, isdir
+from os import path
 from fabric.api import run, local, env, execute
-from fabric.operations import get
 
 #env.hosts = ['34.75.197.138', '104.196.173.55']
 
 
-def time_sort(file_name, mypath):
-    return path.getmtime(mypath + '/' + file_name)
-
-
-def list_local_folder(dir=None):
-    """docstring for list_dir"""
-    dir = dir or '/tmp'
-    string = local("for i in {}*; do echo $i; done".format(dir))
-    return string.replace("\r", "")
-
-
-def list_remote_folder(dir=None):
-    """docstring for list_dir"""
-    dir = dir or '/tmp'
-    string = run("for i in {}*; do echo $i; done".format(dir))
-    return string.replace("\r", "")
-
-
 def clean_local_releases(nb=0):
+    """ clean versions folder locally """
     mypath = 'versions'
 
     if int(nb) == 0:
@@ -41,7 +22,7 @@ def clean_local_releases(nb=0):
 
 
 def clean_releases_from_server(nb=0):
-
+    """ clean /data/web_static/releases remotely """
     if int(nb) == 0:
         nb = '2'
     else:
@@ -50,8 +31,8 @@ def clean_releases_from_server(nb=0):
     mypath = '/data/web_static/releases'
     if path.exists(mypath) is False:
         return False
-    local(' find {}  -mindepth 1 -maxdepth 1 -type d | sort -r |  tail -n +{} | xargs rm -fr'
-          .format(mypath, nb))
+    run(' find {}  -mindepth 1 -maxdepth 1 -type d | sort -r |  tail -n +{} | xargs rm -fr'
+        .format(mypath, nb))
 
 
 def do_clean(number=0):
