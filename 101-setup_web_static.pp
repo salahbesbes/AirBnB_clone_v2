@@ -49,13 +49,14 @@ file { ['/var/www',
 } ->
 
 file { '/var/www/html/index.html':
-  ensure  => 'present',
+  ensure  => present,
   content => 'Holberton School Nginx\n';
 } ->
 
 file { '/etc/nginx/sites-available/default':
   ensure  => present,
-  content => $nginx_conf;
+  content => $nginx_conf,
+  require => Package['nginx'];
 } ->
 
 exec { 'nginx restart':
