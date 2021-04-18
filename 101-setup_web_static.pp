@@ -7,7 +7,7 @@ exec { 'update':
 
 package { 'nginx':
   ensure  => installed,
-  require => exec['update'];
+  require => Exec['update'];
 }
 
 exec { 'folder creation':
@@ -21,7 +21,7 @@ file { '/var/www/html/index.html':
   owner  => 'ubuntu',
   group  => 'ubuntu',
   mode => '0644'
-  require => pack['nginx']
+  require => Package['nginx']
 }
 
 exec { 'create linkedFile':
@@ -42,4 +42,11 @@ file_line { '/etc/nginx/sites-available/default':
   line    => "add_header X-Served-By ${hostname};",
   path    => '/etc/nginx/sites-available/default',
   require => Package['nginx'];
+  notify  => Service['nginx'],
+}
+
+service { 'nginx':
+  ensure  => 'running',
+  enable  => true,
+  require => Package['nginx'],
 }
