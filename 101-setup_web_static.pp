@@ -25,7 +25,7 @@ file { '/var/www/html/index.html':
 }
 
 exec { 'create linkedFile':
-  command => 'ln -sf /data/web_static/releases/test /data/web_static/current',
+  command => '/usr/bin/ln -sf /data/web_static/releases/test /data/web_static/current',
 }
 
 file { '/data/':
