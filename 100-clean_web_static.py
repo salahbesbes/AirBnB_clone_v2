@@ -3,8 +3,6 @@
 from os import path
 from fabric.api import run, local, env, execute
 
-#env.hosts = ['34.75.197.138', '104.196.173.55']
-
 
 def clean_local_releases(nb=0):
     """ clean versions folder locally """
