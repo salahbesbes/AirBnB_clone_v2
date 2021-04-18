@@ -3,50 +3,36 @@
 
 exec { 'update':
   command => 'usr/bin/apt-get apdate',
-}
-
+}->
 package { 'nginx':
-  ensure  => installed,
-  require => Exec['update'];
-}
+  ensure   => installed,
+  provider => apt;
+}->
 
-exec { 'folder creation':
-  command => 'usr/bin/mkdir -p  /data/web_static/;
-        usr/bin/mkdir -p /data/web_static/releases/test/;
-        usr/bin/mkdir /data/web_static/shared/',
+file { '/data/webs_tatic':
+  ensure => directory;
+}->
+file { '/data/webs_tatic/releases/test':
+  ensure => directory;
+}->
+file { '/data/webs_tatic/shared':
+  ensure => directory;
+}->
+file { '/data/webs_tatic/releases/test/index.html':
+  ensure => present;
+  content => "salah server\n"
+}->
+file { '/data/web_static/current':
+  ensure => 'link',
+  target => '/data/web_static/releases/test'
+}->
+exec { 'chown -R ubuntu:ubuntu /data/':
+  path => '/usr/bin/:/usr/local/bin/:/bin/'
 }
 file { '/var/www/html/index.html':
-  ensure  => present,
-  content => 'this is salah server';
-  owner  => 'ubuntu',
-  group  => 'ubuntu',
-  mode => '0644'
-  require => Package['nginx']
-}
-
-exec { 'create linkedFile':
-  command => '/usr/bin/ln -sf /data/web_static/releases/test /data/web_static/current',
-}
-
-file { '/data/':
-  ensure  => directory,
-  owner   => 'ubuntu',
-  recurse => true,
-  group   => 'ubuntu',
-  mode    => '0644';
-}
-
-file_line { '/etc/nginx/sites-available/default':
-  ensure  => present,
-  after   => 'listen \[::\]:80',
-  line    => "add_header X-Served-By ${hostname};",
-  path    => '/etc/nginx/sites-available/default',
-  require => Package['nginx'];
-  notify  => Service['nginx'],
-}
-
-service { 'nginx':
-  ensure  => running,
-  enable  => true,
-  require => Package['nginx'],
+  ensure  => 'present',
+  content => "Holberton School Nginx\n"
+} ->
+exec { 'nginx restart':
+  path => '/etc/init.d/'
 }
