@@ -46,6 +46,7 @@ exec { 'chown -R ubuntu:ubuntu /data/':
 file { ['/var/www',
         '/var/www/html']:
   ensure => directory;
+  require => Package['nginx']
 } ->
 
 file { '/var/www/html/index.html':
@@ -57,8 +58,9 @@ file { '/etc/nginx/sites-available/default':
   ensure  => present,
   content => $nginx_conf,
   require => Package['nginx'];
-} ->
+  notify => Service['nginx']
 
-exec { 'nginx restart':
-  path => '/etc/init.d/';
+}
+service { 'nginx':
+    ensure => running
 }
