@@ -104,4 +104,5 @@ class DBStorage:
         self.__session = scoped_session(session_factory)
 
     def close(self):
+        """ close current session """
         self.__session.remove()
