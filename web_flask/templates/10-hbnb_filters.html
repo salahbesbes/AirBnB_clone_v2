@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<HTML lang="en">
+<HEAD>
+    <TITLE>AirBnB clone</TITLE>
+
+    <link rel="shortcut icon" href="static/images/icon.png"/>
+
+    <link rel="stylesheet" href="static/styles/4-common.css"/>
+    <link rel="stylesheet" href="static/styles/3-header.css"/>
+    <link rel="stylesheet" href="static/styles/3-footer.css"/>
+    <link rel="stylesheet" href="static/styles/6-filters.css"/>
+</HEAD>
+<BODY>
+<HEADER>
+    <DIV id="header_logo"></DIV>
+</HEADER>
+<DIV class="container">
+    <SECTION class="filters">
+        <BUTTON>Search</BUTTON>
+        <DIV class="locations">
+            <H3>States</H3>
+            <H4>&nbsp;</H4>
+            <UL class="popover">
+                {% for state in states|sort(attribute="name") %}
+                <li><h2>{{state.name}}</h2>
+                    <UL> {% for city in state.cities|sort(attribute="name") %}
+                        <li><h4>{{city.name}}</h4></li>
+                        {% endfor %}
+                    </UL>
+                </LI>
+                {% endfor %}
+            </UL>
+
+        </DIV>
+        <DIV class="filter_amenities">
+            <H3>Amenities</H3>
+            <H4>&nbsp;</H4>
+            <UL class="popover">
+                {% for amenity in amenities %}
+                <LI><h4>{{amenity.name}}</h4></LI>
+                {% endfor %}
+            </UL>
+        </DIV>
+    </SECTION>
+</DIV>
+<FOOTER>
+    <P>Holberton School</P>
+</FOOTER>
+</BODY>
+</html>
