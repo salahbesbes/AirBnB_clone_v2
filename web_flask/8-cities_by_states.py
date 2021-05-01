@@ -5,6 +5,7 @@ import models
 from models.state import State
 
 storage = models.storage
+storage.all()
 app = Flask(__name__)
 
 
