@@ -3,8 +3,8 @@
 from flask import Flask, render_template
 import models
 from models.state import State
+from models import storage
 
-storage = models.storage
 storage.all()
 app = Flask(__name__)
 

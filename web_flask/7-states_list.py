@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 """ flask module """
 from flask import Flask, render_template
-import models
+from models import storage
 from models.state import State
 
-storage = models.storage
 storage.all()
 app = Flask(__name__)
 
