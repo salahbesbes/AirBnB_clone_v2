@@ -71,4 +71,5 @@ class FileStorage:
             pass
 
     def close(self):
+        """ read from file """
         self.reload()
