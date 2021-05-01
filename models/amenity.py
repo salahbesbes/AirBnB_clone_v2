@@ -13,4 +13,4 @@ class Amenity(BaseModel, Base):
                   nullable=False)
     place_amenities = relationship("Place",
                                    secondary=place_amenity,
-                                   viewonly=True)
+                                   viewonly=False)
