@@ -17,7 +17,7 @@ def hbnb():
     return 'HBNB'
 
 
-@app.route('/c/(<text>)', strict_slashes=False)
+@app.route('/c/<text>', strict_slashes=False)
 def pass_arg(text):
     """ pass argument to route """
     return 'C {}'.format(text.replace('_', ' '))
@@ -27,7 +27,7 @@ def pass_arg(text):
 @app.route('/python/(<text>)', strict_slashes=False)
 def optional_arg(text='cool'):
     """ pass argument to route """
-    return 'Python {}'.format(text.replace('_', ' '))
+    return 'Python is {}'.format(text.replace('_', ' '))
 
 
 if __name__ == '__main__':
