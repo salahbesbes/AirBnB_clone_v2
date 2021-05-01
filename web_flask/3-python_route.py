@@ -24,7 +24,7 @@ def pass_arg(text):
 
 
 @app.route('/python', strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
+@app.route('/python/<string:text>', strict_slashes=False)
 def optional_arg(text='cool'):
     """ pass argument to route """
     return 'Python is {}'.format(text.replace('_', ' '))
