@@ -6,8 +6,8 @@
 <BODY>
 {% if show_cities %}
     {% if state %}
-        <H1>States</H1>
-        <H3>Cities</H3>
+        <H1>States: {{state.name}}</H1>
+        <H3>Cities:</H3>
 
         <UL> {% for city in state.cities|sort(attribute="name") %}
             <LI>{{city.id}}: <B>{{city.name}}</B></LI>
