@@ -10,23 +10,25 @@ app = Flask(__name__)
 
 
 @app.route('/states', strict_slashes=False)
-def states():
-    """ return all states in the db  """
-    states = storage.all(State)  # dict
-    return render_template('7-states_list.html', states=states)
-
-
 @app.route('/states/<id>', strict_slashes=False)
-def states_list(id):
+def states_list(id=None):
     """ return single state description """
     found_state = None
-
     states = storage.all(State).values()  # list of states instance
-    for state in states:
-        if state.id == id:
-            found_state = state
-            break
-    return render_template('9-states.html', state=found_state)
+    if id:
+        for state in states:
+            if state.id == id:
+                found_state = state
+                break
+        return render_template('9-states.html',
+                               states=states,
+                               state=found_state,
+                               show_cities=True)
+
+    return render_template('9-states.html',
+                           states=states,
+                           state=found_state,
+                           show_cities=False)
 
 
 @app.teardown_appcontext
