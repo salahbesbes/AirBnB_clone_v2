@@ -87,8 +87,6 @@ class DBStorage:
                 .query(className) \
                 .filter(className.id == obj.id) \
                 .one_or_none()
-
-            print('from db res = ', res)
             if res:  # delete from db
                 self.__session.delete(res)
                 self.__session.commit()
@@ -105,5 +103,4 @@ class DBStorage:
 
     def close(self):
         """ close current session """
-        self.reload()
-        self.__session.close()
+        self.__session.remove()
